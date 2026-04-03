@@ -130,6 +130,9 @@ def build_etf_from_item(item):
     # Exclude overseas ETFs by name keywords (e.g., 미국/해외/글로벌).
     if name and has_overseas_keyword(name):
         return None
+    # Exclude covered call ETFs by name keywords (strong filter).
+    if name and has_covered_call_keyword(name):
+        return None
 
     return {
         "id": f"KRX:{ticker}",
@@ -259,8 +262,6 @@ def main():
     # Optional filters for covered call
     if os.environ.get("FILTER_COVERED_CALL") == "1":
         etfs = [e for e in etfs if "covered_call" in (e.get("tags") or [])]
-    elif os.environ.get("EXCLUDE_COVERED_CALL") == "1":
-        etfs = [e for e in etfs if "covered_call" not in (e.get("tags") or [])]
 
     # Sort by market cap desc and take top 5
     etfs.sort(key=lambda e: (e.get("price", {}).get("market_cap") or 0), reverse=True)
