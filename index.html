@@ -41,7 +41,6 @@
       text-decoration: none;
       background: #1c2f33;
     }
-    .status { margin-top: 16px; color: var(--muted); }
     .section-title { font-size: 18px; font-weight: 600; margin: 0 0 12px; }
     .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #1f3438; }
     table { width: 100%; border-collapse: collapse; min-width: 720px; }
@@ -140,10 +139,6 @@
       .then(d => {
         const count = Array.isArray(d.etfs) ? d.etfs.length : 0;
         const asOf = d.as_of || 'unknown';
-        const statusEl = document.getElementById('status');
-        if (statusEl) {
-          statusEl.textContent = `데이터 로딩 성공: ${count}개 (as_of: ${asOf})`;
-        }
 
         const rows = document.getElementById('etf-rows');
         if (!Array.isArray(d.etfs) || d.etfs.length === 0) {
@@ -199,10 +194,6 @@
         bindRows();
       })
       .catch(() => {
-        const statusEl = document.getElementById('status');
-        if (statusEl) {
-          statusEl.textContent = '데이터 로딩 실패: etfs.json 경로를 확인하세요.';
-        }
         const rows = document.getElementById('etf-rows');
         if (rows) {
           rows.innerHTML = '<tr><td colspan="8" class="muted">데이터 로딩 실패</td></tr>';
