@@ -8,108 +8,6 @@
   },
   "etfs": [
     {
-      "id": "KRX:458730",
-      "ticker": "458730",
-      "name_ko": "TIGER 미국배당다우존스",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 14630,
-        "change": -105,
-        "change_pct": -0.71,
-        "volume": 2385340,
-        "market_cap": 3166663500000,
-        "date": "20260402"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:161510",
-      "ticker": "161510",
-      "name_ko": "PLUS 고배당주",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 25050,
-        "change": -780,
-        "change_pct": -3.02,
-        "volume": 2309607,
-        "market_cap": 2508507000000,
-        "date": "20260402"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:441640",
-      "ticker": "441640",
-      "name_ko": "KODEX 미국배당커버드콜액티브",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 12745,
-        "change": -55,
-        "change_pct": -0.43,
-        "volume": 1026520,
-        "market_cap": 1452930000000,
-        "date": "20260402"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
       "id": "KRX:466940",
       "ticker": "466940",
       "name_ko": "TIGER 은행고배당플러스TOP10",
@@ -144,18 +42,120 @@
       }
     },
     {
-      "id": "KRX:446720",
-      "ticker": "446720",
-      "name_ko": "SOL 미국배당다우존스",
+      "id": "KRX:472150",
+      "ticker": "472150",
+      "name_ko": "TIGER 배당커버드콜액티브",
       "issuer": null,
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 13425,
-        "change": -55,
-        "change_pct": -0.41,
-        "volume": 712100,
-        "market_cap": 922297500000,
+        "close": 16055,
+        "change": -735,
+        "change_pct": -4.38,
+        "volume": 4419859,
+        "market_cap": 899882750000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:498410",
+      "ticker": "498410",
+      "name_ko": "KODEX 금융고배당TOP10타겟위클리커버드콜",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 12625,
+        "change": -120,
+        "change_pct": -0.94,
+        "volume": 1909714,
+        "market_cap": 662812500000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:441800",
+      "ticker": "441800",
+      "name_ko": "TIME Korea플러스배당액티브",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 25290,
+        "change": -1260,
+        "change_pct": -4.75,
+        "volume": 593883,
+        "market_cap": 662598000000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:0105E0",
+      "ticker": "0105E0",
+      "name_ko": "SOL 코리아고배당",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 12665,
+        "change": -415,
+        "change_pct": -3.17,
+        "volume": 1675808,
+        "market_cap": 599054500000,
         "date": "20260402"
       },
       "distribution": {
