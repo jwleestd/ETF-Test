@@ -74,7 +74,7 @@
       <div class="status" id="status">데이터 로딩 테스트를 진행 중...</div>
     </div>
 
-    <div class="card">
+    <div class="card" id="list-card">
       <div class="section-title">ETF 목록 (시가총액 내림차순)</div>
       <div class="table-wrap">
         <table>
@@ -194,6 +194,7 @@
         }).join('');
 
         const detailCard = document.getElementById('detail-card');
+        const listCard = document.getElementById('list-card');
         const detailContent = document.getElementById('detail-content');
 
         const renderDetail = (etf) => {
@@ -220,6 +221,7 @@
               tr.classList.add('active');
               const idx = Number(tr.getAttribute('data-idx'));
               renderDetail(sorted[idx]);
+              if (listCard) listCard.style.display = 'none';
             });
           });
         };
@@ -229,6 +231,7 @@
           homeBtn.addEventListener('click', () => {
             detailCard.style.display = 'none';
             rows.querySelectorAll('tr.active').forEach(x => x.classList.remove('active'));
+            if (listCard) listCard.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
           });
         }
