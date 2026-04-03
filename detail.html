@@ -35,13 +35,22 @@
     .kv { min-width: 200px; }
     .k { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
     .v { font-size: 16px; }
-    a { color: var(--accent); text-decoration: none; }
+    .btn {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid #2a4a4f;
+      color: var(--text);
+      text-decoration: none;
+      background: #1c2f33;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="title" id="title">ETF 상세</div>
-    <div class="subtitle"><a href="./index.html">목록으로 돌아가기</a></div>
+    <div class="subtitle"><a class="btn" href="./index.html">홈</a></div>
 
     <div class="card" id="content">로딩 중...</div>
   </div>

@@ -97,13 +97,6 @@
       </div>
     </div>
 
-    <div class="card" id="detail-card" style="display:none;">
-      <div class="section-title" style="display:flex; align-items:center; justify-content:space-between;">
-        <span>ETF 상세</span>
-        <button class="btn" id="home-btn" type="button">홈</button>
-      </div>
-      <div id="detail-content" class="muted">선택한 ETF 정보가 표시됩니다.</div>
-    </div>
   </div>
 
   <script>
@@ -193,51 +186,17 @@
           `;
         }).join('');
 
-        const detailCard = document.getElementById('detail-card');
-        const listCard = document.getElementById('list-card');
-        const detailContent = document.getElementById('detail-content');
-
-        const renderDetail = (etf) => {
-          if (!etf) return;
-          const price = etf.price || {};
-          const dist = etf.distribution || {};
-          detailContent.innerHTML = `
-            <div><strong>${etf.name_ko || '-'}</strong> (${etf.ticker || '-'})</div>
-            <div class="muted" style="margin-top:6px;">
-              가격: ${price.close != null ? fmtNumber(price.close) + '원' : '-'} ·
-              시가총액: ${price.market_cap != null ? fmtNumber(price.market_cap) + '원' : '-'} ·
-              분배금: ${dist.latest_amount != null ? fmtNumber(dist.latest_amount) + '원' : '-'} ·
-              주기: ${dist.frequency || '-'}
-            </div>
-          `;
-          detailCard.style.display = 'block';
-        };
-
         const bindRows = () => {
           const trList = rows.querySelectorAll('tr[data-idx]');
           trList.forEach(tr => {
             tr.addEventListener('click', () => {
-              trList.forEach(x => x.classList.remove('active'));
-              tr.classList.add('active');
               const idx = Number(tr.getAttribute('data-idx'));
-              renderDetail(sorted[idx]);
-              if (listCard) listCard.style.display = 'none';
+              const etf = sorted[idx];
+              const url = `./detail.html?ticker=${encodeURIComponent(etf.ticker || '')}`;
+              window.location.href = url;
             });
           });
         };
-
-        const homeBtn = document.getElementById('home-btn');
-        if (homeBtn) {
-          homeBtn.addEventListener('click', () => {
-            detailCard.style.display = 'none';
-            rows.querySelectorAll('tr.active').forEach(x => x.classList.remove('active'));
-            if (listCard) listCard.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          });
-        }
-
-        // Ensure detail is hidden by default on first load.
-        detailCard.style.display = 'none';
 
         bindRows();
       })
