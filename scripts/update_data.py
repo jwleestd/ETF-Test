@@ -127,6 +127,9 @@ def build_etf_from_item(item):
     # Exclude non-Korean listings by ISIN prefix.
     if isin and not str(isin).startswith("KR"):
         return None
+    # Exclude overseas ETFs by name keywords (e.g., 미국/해외/글로벌).
+    if name and has_overseas_keyword(name):
+        return None
 
     return {
         "id": f"KRX:{ticker}",
@@ -162,6 +165,22 @@ def build_etf_from_item(item):
             "disclosure": None,
         },
     }
+
+
+def has_overseas_keyword(name):
+    keywords = [
+        "미국", "US", "USA", "U.S", "U S",
+        "해외", "글로벌", "월드", "WORLD",
+        "S&P", "NASDAQ", "나스닥", "다우", "DOW",
+        "MSCI", "FTSE", "RUSSELL", "Russell",
+        "유럽", "일본", "중국", "홍콩", "베트남", "인도", "브라질", "터키",
+        "인도네시아", "동남아", "아시아",
+    ]
+    upper = str(name).upper()
+    for kw in keywords:
+        if kw.upper() in upper:
+            return True
+    return False
 
 
 def fetch_latest_for_keyword(api_key, keyword, max_lookback_days=5):
