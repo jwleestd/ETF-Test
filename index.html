@@ -68,7 +68,6 @@
     <div class="title">한국 배당 ETF</div>
     <div class="subtitle">이름에 “배당”이 포함된 ETF 중 시가총액 상위 5개</div>
 
-    <div class="status" id="status" style="margin-top:16px;">데이터 로딩 테스트를 진행 중...</div>
 
     <div class="card" id="list-card">
       <div class="section-title">ETF 목록 (시가총액 내림차순)</div>
@@ -141,7 +140,10 @@
       .then(d => {
         const count = Array.isArray(d.etfs) ? d.etfs.length : 0;
         const asOf = d.as_of || 'unknown';
-        document.getElementById('status').textContent = `데이터 로딩 성공: ${count}개 (as_of: ${asOf})`;
+        const statusEl = document.getElementById('status');
+        if (statusEl) {
+          statusEl.textContent = `데이터 로딩 성공: ${count}개 (as_of: ${asOf})`;
+        }
 
         const rows = document.getElementById('etf-rows');
         if (!Array.isArray(d.etfs) || d.etfs.length === 0) {
@@ -197,7 +199,10 @@
         bindRows();
       })
       .catch(() => {
-        document.getElementById('status').textContent = '데이터 로딩 실패: etfs.json 경로를 확인하세요.';
+        const statusEl = document.getElementById('status');
+        if (statusEl) {
+          statusEl.textContent = '데이터 로딩 실패: etfs.json 경로를 확인하세요.';
+        }
         const rows = document.getElementById('etf-rows');
         if (rows) {
           rows.innerHTML = '<tr><td colspan="8" class="muted">데이터 로딩 실패</td></tr>';
