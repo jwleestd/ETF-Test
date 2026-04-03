@@ -98,7 +98,10 @@
     </div>
 
     <div class="card" id="detail-card" style="display:none;">
-      <div class="section-title">ETF 상세</div>
+      <div class="section-title" style="display:flex; align-items:center; justify-content:space-between;">
+        <span>ETF 상세</span>
+        <button class="btn" id="home-btn" type="button">홈</button>
+      </div>
       <div id="detail-content" class="muted">선택한 ETF 정보가 표시됩니다.</div>
     </div>
   </div>
@@ -219,11 +222,16 @@
               renderDetail(sorted[idx]);
             });
           });
-          if (trList.length > 0) {
-            trList[0].classList.add('active');
-            renderDetail(sorted[0]);
-          }
         };
+
+        const homeBtn = document.getElementById('home-btn');
+        if (homeBtn) {
+          homeBtn.addEventListener('click', () => {
+            detailCard.style.display = 'none';
+            rows.querySelectorAll('tr.active').forEach(x => x.classList.remove('active'));
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
 
         bindRows();
       })
