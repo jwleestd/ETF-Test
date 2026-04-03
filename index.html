@@ -62,8 +62,8 @@
 </head>
 <body>
   <div class="wrap">
-    <div class="title">한국 고배당 ETF</div>
-    <div class="subtitle">고배당 ETF 데이터 표시 (MVP)</div>
+    <div class="title">한국 배당 ETF</div>
+    <div class="subtitle">이름에 “배당”이 포함된 ETF 중 시가총액 상위 5개</div>
 
     <div class="card">
       <div class="section-title">데이터 JSON 링크</div>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="card">
-      <div class="section-title">ETF 목록 (가격 · 분배금)</div>
+      <div class="section-title">ETF 목록 (가격 · 분배금 · 시가총액)</div>
       <div class="table-wrap">
         <table>
           <thead>
@@ -81,7 +81,7 @@
               <th>티커</th>
               <th>가격</th>
               <th>분배금</th>
-              <th>배당성향/비중</th>
+              <th>시가총액</th>
               <th>기준일</th>
             </tr>
           </thead>
@@ -136,7 +136,7 @@
 
           const priceText = price.close != null ? `${fmtNumber(price.close)}원` : '-';
           const distText = dist.latest_amount != null ? `${fmtNumber(dist.latest_amount)}원` : '-';
-          const ccText = cc.value != null ? fmtPercent(cc.value) : '-';
+          const marketCap = price.market_cap != null ? `${fmtNumber(price.market_cap)}원` : '-';
           const basisDate = fmtDate(price.date || dist.latest_record_date || cc.date || d.as_of);
 
           return `
@@ -145,7 +145,7 @@
               <td><span class="pill">${etf.ticker || '-'}</span></td>
               <td>${priceText}</td>
               <td>${distText}</td>
-              <td>${ccText}</td>
+              <td>${marketCap}</td>
               <td>${basisDate}</td>
             </tr>
           `;

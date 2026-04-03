@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 from urllib.request import urlopen, Request
 
 WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(WORKSPACE_ROOT, "data", "etfs.json")
+DATA_PATH = os.path.join(WORKSPACE_ROOT, "public", "data", "etfs.json")
 
 # 금융위원회_증권상품시세정보 (GetSecuritiesProductInfoService)
 # 서비스 URL: https://apis.data.go.kr/1160100/service/GetSecuritiesProductInfoService
@@ -16,11 +16,13 @@ ETF_PRICE_ENDPOINT = "/getETFPriceInfo"
 
 # Common field name candidates seen in KRX-related public APIs.
 FIELD_CANDIDATES = {
-    "ticker": ["srtnCd", "ticker", "code", "itmsNm"],
+    "ticker": ["srtnCd", "ticker", "code"],
+    "name": ["itmsNm", "name", "itmsNm"],
     "close": ["clpr", "close", "trdPrc", "tdd_clsprc"],
     "change": ["vs", "change", "fluc"],
     "change_pct": ["fltRt", "changeRate", "rate"],
     "volume": ["trqu", "volume", "accTrdVol", "tdd_trdvol"],
+    "market_cap": ["mrktTotAmt", "marketCap", "tdd_mrktTotAmt"],
     "date": ["basDt", "date", "trdDd"],
 }
 
@@ -80,66 +82,99 @@ def extract_items(payload):
     return []
 
 
-def build_etf_price_url(service_key, ticker=None, bas_dt=None):
+def build_etf_price_url(service_key, ticker=None, bas_dt=None, like_name=None, page_no=1, num_rows=1000):
     # Parameters per official guide:
     # serviceKey, numOfRows, pageNo, resultType, basDt, likeSrtnCd ...
     params = {
         "serviceKey": service_key,
         "resultType": "json",
-        "numOfRows": 100,
-        "pageNo": 1,
+        "numOfRows": num_rows,
+        "pageNo": page_no,
     }
     if ticker:
         params["likeSrtnCd"] = ticker
+    if like_name:
+        params["likeItmsNm"] = like_name
     if bas_dt:
         params["basDt"] = bas_dt
     return f"{DATA_GO_KR_BASE_URL}{ETF_PRICE_ENDPOINT}?{urlencode(params)}"
 
 
-def update_prices(data, items):
-    etfs = data.get("etfs", [])
-    by_ticker = {e.get("ticker"): e for e in etfs}
+def build_etf_from_item(item):
+    ticker = first_existing(item, FIELD_CANDIDATES["ticker"])
+    name = first_existing(item, FIELD_CANDIDATES["name"])
+    close = to_number(first_existing(item, FIELD_CANDIDATES["close"]))
+    change = to_number(first_existing(item, FIELD_CANDIDATES["change"]))
+    change_pct = to_number(first_existing(item, FIELD_CANDIDATES["change_pct"]))
+    volume = to_number(first_existing(item, FIELD_CANDIDATES["volume"]))
+    market_cap = to_number(first_existing(item, FIELD_CANDIDATES["market_cap"]))
+    date_value = first_existing(item, FIELD_CANDIDATES["date"])
 
-    for item in items:
-        ticker = first_existing(item, FIELD_CANDIDATES["ticker"])
-        if not ticker:
-            continue
-        if ticker not in by_ticker:
-            continue
+    if not ticker:
+        return None
 
-        etf = by_ticker[ticker]
-        price = etf.get("price", {})
+    return {
+        "id": f"KRX:{ticker}",
+        "ticker": ticker,
+        "name_ko": name or "-",
+        "issuer": None,
+        "listed_date": None,
+        "expense_ratio": None,
+        "price": {
+            "close": close,
+            "change": change,
+            "change_pct": change_pct,
+            "volume": volume,
+            "market_cap": market_cap,
+            "date": date_value,
+        },
+        "distribution": {
+            "latest_amount": None,
+            "latest_record_date": None,
+            "latest_pay_date": None,
+            "frequency": None,
+            "currency": "KRW",
+        },
+        "covered_call_ratio": {
+            "value": None,
+            "unit": "percent",
+            "date": None,
+            "method": "not_available",
+        },
+        "links": {
+            "issuer": None,
+            "factsheet": None,
+            "disclosure": None,
+        },
+    }
 
-        close = to_number(first_existing(item, FIELD_CANDIDATES["close"]))
-        change = to_number(first_existing(item, FIELD_CANDIDATES["change"]))
-        change_pct = to_number(first_existing(item, FIELD_CANDIDATES["change_pct"]))
-        volume = to_number(first_existing(item, FIELD_CANDIDATES["volume"]))
-        date_value = first_existing(item, FIELD_CANDIDATES["date"])
 
-        if close is not None:
-            price["close"] = close
-        if change is not None:
-            price["change"] = change
-        if change_pct is not None:
-            price["change_pct"] = change_pct
-        if volume is not None:
-            price["volume"] = volume
-        if date_value:
-            price["date"] = date_value
-
-        etf["price"] = price
-
-
-def fetch_latest_for_ticker(api_key, ticker, max_lookback_days=5):
+def fetch_latest_for_keyword(api_key, keyword, max_lookback_days=5):
     # Try today, then go back a few days to find the latest trading day.
     today = datetime.now().date()
     for delta in range(max_lookback_days + 1):
         bas_dt = (today - timedelta(days=delta)).strftime("%Y%m%d")
-        url = build_etf_price_url(api_key, ticker=ticker, bas_dt=bas_dt)
-        payload = fetch_json(url)
-        items = extract_items(payload)
-        if items:
-            return items
+        # paginate in case there are many results
+        page_no = 1
+        collected = []
+        while True:
+            url = build_etf_price_url(
+                api_key,
+                bas_dt=bas_dt,
+                like_name=keyword,
+                page_no=page_no,
+                num_rows=1000,
+            )
+            payload = fetch_json(url)
+            items = extract_items(payload)
+            if not items:
+                break
+            collected.extend(items)
+            if len(items) < 1000:
+                break
+            page_no += 1
+        if collected:
+            return collected
     return []
 
 
@@ -155,28 +190,30 @@ def main():
 
     data = load_json(DATA_PATH)
 
-    # Fetch per ticker to avoid pulling the full dataset.
-    all_items = []
-    for etf in data.get("etfs", []):
-        ticker = etf.get("ticker")
-        if not ticker:
-            continue
-        try:
-            items = fetch_latest_for_ticker(api_key, ticker)
-        except Exception as exc:
-            print(f"Failed to fetch ETF price for {ticker}: {exc}")
-            continue
-        all_items.extend(items)
+    # Fetch ETFs whose name includes "배당", then pick top 5 by market cap.
+    try:
+        items = fetch_latest_for_keyword(api_key, "배당")
+    except Exception as exc:
+        print(f"Failed to fetch ETF prices: {exc}")
+        return
 
-    if not all_items:
+    if not items:
         print("No items returned from ETF price API.")
         return
 
-    update_prices(data, all_items)
+    etfs = []
+    for item in items:
+        etf = build_etf_from_item(item)
+        if etf:
+            etfs.append(etf)
+
+    # Sort by market cap desc and take top 5
+    etfs.sort(key=lambda e: (e.get("price", {}).get("market_cap") or 0), reverse=True)
+    data["etfs"] = etfs[:5]
 
     data["as_of"] = datetime.now().date().isoformat()
     data.setdefault("source_notes", {})["price"] = (
-        "data.go.kr 증권상품시세정보 getETFPriceInfo"
+        "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt)"
     )
 
     save_json(DATA_PATH, data)

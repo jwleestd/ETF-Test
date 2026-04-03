@@ -8,97 +8,32 @@
   },
   "etfs": [
     {
-      "id": "KRX:000001",
-      "ticker": "000001",
-      "name_ko": "고배당 ETF A",
-      "issuer": "운용사 A",
-      "listed_date": "YYYY-MM-DD",
-      "expense_ratio": 0.30,
+      "id": "KRX:000000",
+      "ticker": "000000",
+      "name_ko": "배당 ETF 샘플 (자동 갱신 예정)",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
       "price": {
-        "close": 12345,
+        "close": null,
         "change": null,
         "change_pct": null,
-        "volume": 1000000,
+        "volume": null,
+        "market_cap": null,
         "date": null
       },
       "distribution": {
-        "latest_amount": 120,
+        "latest_amount": null,
         "latest_record_date": null,
         "latest_pay_date": null,
-        "frequency": "monthly",
+        "frequency": null,
         "currency": "KRW"
       },
       "covered_call_ratio": {
-        "value": 5.2,
+        "value": null,
         "unit": "percent",
         "date": null,
-        "method": "dividend_yield_placeholder"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:000002",
-      "ticker": "000002",
-      "name_ko": "고배당 ETF B",
-      "issuer": "운용사 B",
-      "listed_date": "YYYY-MM-DD",
-      "expense_ratio": 0.28,
-      "price": {
-        "close": 9876,
-        "change": null,
-        "change_pct": null,
-        "volume": 800000,
-        "date": null
-      },
-      "distribution": {
-        "latest_amount": 90,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": "monthly",
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": 4.6,
-        "unit": "percent",
-        "date": null,
-        "method": "dividend_yield_placeholder"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:000003",
-      "ticker": "000003",
-      "name_ko": "고배당 ETF C",
-      "issuer": "운용사 C",
-      "listed_date": "YYYY-MM-DD",
-      "expense_ratio": 0.25,
-      "price": {
-        "close": 10500,
-        "change": null,
-        "change_pct": null,
-        "volume": 600000,
-        "date": null
-      },
-      "distribution": {
-        "latest_amount": 75,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": "quarterly",
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": 3.9,
-        "unit": "percent",
-        "date": null,
-        "method": "dividend_yield_placeholder"
+        "method": "not_available"
       },
       "links": {
         "issuer": null,
