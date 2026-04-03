@@ -6,7 +6,8 @@ from urllib.parse import urlencode
 from urllib.request import urlopen, Request
 
 WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(WORKSPACE_ROOT, "public", "data", "etfs.json")
+DATA_PATH = os.path.join(WORKSPACE_ROOT, "data", "etfs.json")
+LEGACY_DATA_PATH = os.path.join(WORKSPACE_ROOT, "public", "data", "etfs.json")
 
 # 금융위원회_증권상품시세정보 (GetSecuritiesProductInfoService)
 # 서비스 URL: https://apis.data.go.kr/1160100/service/GetSecuritiesProductInfoService
@@ -37,6 +38,14 @@ def save_json(path, data):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
         f.write("\n")
+
+
+def resolve_data_path():
+    if os.path.exists(DATA_PATH):
+        return DATA_PATH
+    if os.path.exists(LEGACY_DATA_PATH):
+        return LEGACY_DATA_PATH
+    return DATA_PATH
 
 
 def first_existing(item, keys):
@@ -180,8 +189,9 @@ def fetch_latest_for_keyword(api_key, keyword, max_lookback_days=5):
 
 
 def main():
-    if not os.path.exists(DATA_PATH):
-        print(f"Missing data file: {DATA_PATH}")
+    data_path = resolve_data_path()
+    if not os.path.exists(data_path):
+        print(f"Missing data file: {data_path}")
         sys.exit(1)
 
     api_key = os.environ.get("DATA_GO_KR_API_KEY")
@@ -189,7 +199,7 @@ def main():
         print("DATA_GO_KR_API_KEY is not set. Skipping update.")
         return
 
-    data = load_json(DATA_PATH)
+    data = load_json(data_path)
 
     # Fetch ETFs whose name includes "배당", then pick top 5 by market cap.
     try:
@@ -217,7 +227,10 @@ def main():
         "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt)"
     )
 
-    save_json(DATA_PATH, data)
+    save_json(data_path, data)
+    if data_path != DATA_PATH:
+        os.makedirs(os.path.dirname(DATA_PATH), exist_ok=True)
+        save_json(DATA_PATH, data)
     print("Updated ETF prices.")
 
 

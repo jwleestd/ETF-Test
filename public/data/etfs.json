@@ -1,90 +1,25 @@
 ﻿{
   "as_of": "2026-04-03",
   "source_notes": {
-    "price": "K-ETF NAV used as proxy for close; actual close/changes not available in this MVP dataset",
-    "distribution": "not available yet in public API feed; to be populated",
-    "covered_call_ratio": "not available yet in public API feed; to be populated",
-    "expense_ratio": "K-ETF"
+    "price": "placeholder (to be replaced by public API)",
+    "distribution": "placeholder (to be replaced by public data or issuer)",
+    "covered_call_ratio": "optional for high dividend ETF (e.g., dividend yield)",
+    "expense_ratio": "placeholder"
   },
   "etfs": [
     {
-      "id": "KRX:498400",
-      "ticker": "498400",
-      "name_ko": "KODEX 200타겟위클리커버드콜",
-      "issuer": "삼성자산운용",
-      "listed_date": "2024-12-03",
-      "expense_ratio": 0.39,
-      "price": {
-        "close": 17415,
-        "change": null,
-        "change_pct": null,
-        "volume": 11641409,
-        "date": null
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": "https://www.k-etf.com/etf/498400"
-      }
-    },
-    {
-      "id": "KRX:498410",
-      "ticker": "498410",
-      "name_ko": "KODEX 금융고배당TOP10타겟위클리커버드콜",
-      "issuer": "삼성액티브자산운용",
-      "listed_date": "2024-12-17",
-      "expense_ratio": 0.39,
-      "price": {
-        "close": 12994,
-        "change": null,
-        "change_pct": null,
-        "volume": 1774941,
-        "date": null
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": "https://www.k-etf.com/etf/498410"
-      }
-    },
-    {
-      "id": "KRX:0167B0",
-      "ticker": "0167B0",
-      "name_ko": "SOL 200타겟위클리커버드콜",
-      "issuer": "신한자산운용",
-      "listed_date": "2026-03-17",
-      "expense_ratio": 0.3,
+      "id": "KRX:000000",
+      "ticker": "000000",
+      "name_ko": "배당 ETF 샘플 (자동 갱신 예정)",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
       "price": {
         "close": null,
         "change": null,
         "change_pct": null,
         "volume": null,
+        "market_cap": null,
         "date": null
       },
       "distribution": {
@@ -103,7 +38,7 @@
       "links": {
         "issuer": null,
         "factsheet": null,
-        "disclosure": "https://www.k-etf.com/etf/0167B0"
+        "disclosure": null
       }
     }
   ]
