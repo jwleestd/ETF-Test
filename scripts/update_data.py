@@ -159,6 +159,7 @@ def build_etf_from_item(item):
             "date": None,
             "method": "not_available",
         },
+        "tags": ["covered_call"] if name and has_covered_call_keyword(name) else [],
         "links": {
             "issuer": None,
             "factsheet": None,
@@ -176,6 +177,18 @@ def has_overseas_keyword(name):
         "유럽", "일본", "중국", "홍콩", "베트남", "인도", "브라질", "터키",
         "인도네시아", "동남아", "아시아", "EM", "신흥", "선진", "신흥국",
         "글로벌", "WORLD", "GLOBE", "글로벌",
+    ]
+    upper = str(name).upper()
+    for kw in keywords:
+        if kw.upper() in upper:
+            return True
+    return False
+
+
+def has_covered_call_keyword(name):
+    keywords = [
+        "커버드콜", "커버드 콜", "COVERED CALL", "COVEREDCALL",
+        "타겟위클리커버드콜", "위클리커버드콜", "월간커버드콜",
     ]
     upper = str(name).upper()
     for kw in keywords:
@@ -243,14 +256,19 @@ def main():
         if etf:
             etfs.append(etf)
 
+    # Optional: keep only covered call ETFs when FILTER_COVERED_CALL=1
+    if os.environ.get("FILTER_COVERED_CALL") == "1":
+        etfs = [e for e in etfs if "covered_call" in (e.get("tags") or [])]
+
     # Sort by market cap desc and take top 5
     etfs.sort(key=lambda e: (e.get("price", {}).get("market_cap") or 0), reverse=True)
     data["etfs"] = etfs[:5]
 
     data["as_of"] = datetime.now().date().isoformat()
-    data.setdefault("source_notes", {})["price"] = (
-        "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt)"
-    )
+    note = "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt)"
+    if os.environ.get("FILTER_COVERED_CALL") == "1":
+        note += " + covered_call filter"
+    data.setdefault("source_notes", {})["price"] = note
 
     save_json(data_path, data)
     if data_path != DATA_PATH:
