@@ -6,7 +6,7 @@ from urllib.parse import urlencode
 from urllib.request import urlopen, Request
 
 WORKSPACE_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_PATH = os.path.join(WORKSPACE_ROOT, "public", "data", "etfs.json")
+DATA_PATH = os.path.join(WORKSPACE_ROOT, "data", "etfs.json")
 
 # 금융위원회_증권상품시세정보 (GetSecuritiesProductInfoService)
 # 서비스 URL: https://apis.data.go.kr/1160100/service/GetSecuritiesProductInfoService
