@@ -1,0 +1,103 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ETF 상세</title>
+  <style>
+    :root {
+      --bg: #0f1a1c;
+      --card: #152326;
+      --text: #e9f0f1;
+      --muted: #b6c6c8;
+      --accent: #50d7c5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans KR", "Pretendard", "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, #1b3034, transparent),
+                  radial-gradient(900px 600px at 90% 10%, #16353a, transparent),
+                  var(--bg);
+      color: var(--text);
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
+    .title { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+    .subtitle { color: var(--muted); margin-top: 8px; }
+    .card {
+      margin-top: 24px;
+      background: var(--card);
+      border: 1px solid #1f3438;
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .row { display: flex; gap: 16px; flex-wrap: wrap; }
+    .kv { min-width: 200px; }
+    .k { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .v { font-size: 16px; }
+    a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title" id="title">ETF 상세</div>
+    <div class="subtitle"><a href="./index.html">목록으로 돌아가기</a></div>
+
+    <div class="card" id="content">로딩 중...</div>
+  </div>
+
+  <script>
+    const fmtNumber = (v) => {
+      if (v === null || v === undefined || v === '') return '-';
+      const n = Number(v);
+      if (Number.isNaN(n)) return String(v);
+      return n.toLocaleString('ko-KR');
+    };
+
+    const fmtDate = (v) => {
+      if (!v) return '-';
+      if (/^\d{8}$/.test(v)) return `${v.slice(0,4)}-${v.slice(4,6)}-${v.slice(6,8)}`;
+      return v;
+    };
+
+    const params = new URLSearchParams(location.search);
+    const ticker = params.get('ticker');
+
+    fetch('./data/etfs.json')
+      .then(r => r.json())
+      .then(d => {
+        const list = Array.isArray(d.etfs) ? d.etfs : [];
+        const etf = list.find(x => x.ticker === ticker) || list[0];
+        const content = document.getElementById('content');
+
+        if (!etf) {
+          content.textContent = 'ETF 데이터를 찾을 수 없습니다.';
+          return;
+        }
+
+        document.getElementById('title').textContent = `${etf.name_ko || 'ETF 상세'}`;
+
+        const price = etf.price || {};
+        const dist = etf.distribution || {};
+
+        content.innerHTML = `
+          <div class="row">
+            <div class="kv"><div class="k">티커</div><div class="v">${etf.ticker || '-'}</div></div>
+            <div class="kv"><div class="k">운용사</div><div class="v">${etf.issuer || '-'}</div></div>
+            <div class="kv"><div class="k">상장일</div><div class="v">${fmtDate(etf.listed_date)}</div></div>
+            <div class="kv"><div class="k">총보수</div><div class="v">${etf.expense_ratio != null ? etf.expense_ratio + '%' : '-'}</div></div>
+          </div>
+          <div class="row" style="margin-top:16px;">
+            <div class="kv"><div class="k">가격</div><div class="v">${price.close != null ? fmtNumber(price.close) + '원' : '-'}</div></div>
+            <div class="kv"><div class="k">시가총액</div><div class="v">${price.market_cap != null ? fmtNumber(price.market_cap) + '원' : '-'}</div></div>
+            <div class="kv"><div class="k">분배금(최근)</div><div class="v">${dist.latest_amount != null ? fmtNumber(dist.latest_amount) + '원' : '-'}</div></div>
+            <div class="kv"><div class="k">분배 주기</div><div class="v">${dist.frequency || '-'}</div></div>
+          </div>
+        `;
+      })
+      .catch(() => {
+        document.getElementById('content').textContent = '데이터 로딩 실패';
+      });
+  </script>
+</body>
+</html>

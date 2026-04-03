@@ -48,6 +48,9 @@
     th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #1f3438; }
     th { color: var(--muted); font-weight: 600; font-size: 13px; letter-spacing: 0.2px; }
     td { font-size: 14px; }
+    tbody tr { cursor: pointer; }
+    tbody tr:hover { background: #1a2b2f; }
+    tbody tr.active { background: #1d3237; }
     .pill {
       display: inline-block;
       padding: 2px 8px;
@@ -72,7 +75,7 @@
     </div>
 
     <div class="card">
-      <div class="section-title">ETF 목록 (가격 · 분배금 · 시가총액)</div>
+      <div class="section-title">ETF 목록 (시가총액 내림차순)</div>
       <div class="table-wrap">
         <table>
           <thead>
@@ -81,15 +84,22 @@
               <th>티커</th>
               <th>가격</th>
               <th>분배금</th>
+              <th>추정 배당률</th>
+              <th>분배 주기</th>
               <th>시가총액</th>
               <th>기준일</th>
             </tr>
           </thead>
           <tbody id="etf-rows">
-            <tr><td colspan="6" class="muted">데이터 로딩 중...</td></tr>
+            <tr><td colspan="8" class="muted">데이터 로딩 중...</td></tr>
           </tbody>
         </table>
       </div>
+    </div>
+
+    <div class="card" id="detail-card" style="display:none;">
+      <div class="section-title">ETF 상세</div>
+      <div id="detail-content" class="muted">선택한 ETF 정보가 표시됩니다.</div>
     </div>
   </div>
 
@@ -116,6 +126,24 @@
       return v;
     };
 
+    const freqToTimes = (freq) => {
+      if (!freq) return null;
+      const f = String(freq).toLowerCase();
+      if (f === 'monthly') return 12;
+      if (f === 'quarterly') return 4;
+      if (f === 'semiannual' || f === 'semi-annual') return 2;
+      if (f === 'annual' || f === 'yearly') return 1;
+      return null;
+    };
+
+    const calcYield = (price, distAmount, freq) => {
+      const times = freqToTimes(freq);
+      const p = Number(price);
+      const d = Number(distAmount);
+      if (!times || !p || !d) return null;
+      return (d * times / p) * 100;
+    };
+
     fetch('./data/etfs.json')
       .then(r => r.json())
       .then(d => {
@@ -125,37 +153,86 @@
 
         const rows = document.getElementById('etf-rows');
         if (!Array.isArray(d.etfs) || d.etfs.length === 0) {
-          rows.innerHTML = '<tr><td colspan="6" class="muted">데이터가 없습니다.</td></tr>';
+          rows.innerHTML = '<tr><td colspan="8" class="muted">데이터가 없습니다.</td></tr>';
           return;
         }
 
-        rows.innerHTML = d.etfs.map(etf => {
+        const sorted = [...d.etfs].sort((a, b) => {
+          const am = (a.price && a.price.market_cap) || 0;
+          const bm = (b.price && b.price.market_cap) || 0;
+          return bm - am;
+        });
+
+        rows.innerHTML = sorted.map((etf, idx) => {
           const price = etf.price || {};
           const dist = etf.distribution || {};
           const cc = etf.covered_call_ratio || {};
 
           const priceText = price.close != null ? `${fmtNumber(price.close)}원` : '-';
           const distText = dist.latest_amount != null ? `${fmtNumber(dist.latest_amount)}원` : '-';
+          const yieldValue = calcYield(price.close, dist.latest_amount, dist.frequency);
+          const yieldText = yieldValue != null ? fmtPercent(yieldValue) : '-';
+          const freqText = dist.frequency || '-';
           const marketCap = price.market_cap != null ? `${fmtNumber(price.market_cap)}원` : '-';
           const basisDate = fmtDate(price.date || dist.latest_record_date || cc.date || d.as_of);
 
+          const detailUrl = `./detail.html?ticker=${encodeURIComponent(etf.ticker || '')}`;
           return `
-            <tr>
-              <td>${etf.name_ko || '-'}</td>
+            <tr data-idx="${idx}">
+              <td><a href="${detailUrl}" style="color:inherit; text-decoration:underline;">${etf.name_ko || '-'}</a></td>
               <td><span class="pill">${etf.ticker || '-'}</span></td>
               <td>${priceText}</td>
               <td>${distText}</td>
+              <td>${yieldText}</td>
+              <td>${freqText}</td>
               <td>${marketCap}</td>
               <td>${basisDate}</td>
             </tr>
           `;
         }).join('');
+
+        const detailCard = document.getElementById('detail-card');
+        const detailContent = document.getElementById('detail-content');
+
+        const renderDetail = (etf) => {
+          if (!etf) return;
+          const price = etf.price || {};
+          const dist = etf.distribution || {};
+          detailContent.innerHTML = `
+            <div><strong>${etf.name_ko || '-'}</strong> (${etf.ticker || '-'})</div>
+            <div class="muted" style="margin-top:6px;">
+              가격: ${price.close != null ? fmtNumber(price.close) + '원' : '-'} ·
+              시가총액: ${price.market_cap != null ? fmtNumber(price.market_cap) + '원' : '-'} ·
+              분배금: ${dist.latest_amount != null ? fmtNumber(dist.latest_amount) + '원' : '-'} ·
+              주기: ${dist.frequency || '-'}
+            </div>
+          `;
+          detailCard.style.display = 'block';
+        };
+
+        const bindRows = () => {
+          const trList = rows.querySelectorAll('tr[data-idx]');
+          trList.forEach(tr => {
+            tr.addEventListener('click', () => {
+              trList.forEach(x => x.classList.remove('active'));
+              tr.classList.add('active');
+              const idx = Number(tr.getAttribute('data-idx'));
+              renderDetail(sorted[idx]);
+            });
+          });
+          if (trList.length > 0) {
+            trList[0].classList.add('active');
+            renderDetail(sorted[0]);
+          }
+        };
+
+        bindRows();
       })
       .catch(() => {
         document.getElementById('status').textContent = '데이터 로딩 실패: etfs.json 경로를 확인하세요.';
         const rows = document.getElementById('etf-rows');
         if (rows) {
-          rows.innerHTML = '<tr><td colspan="6" class="muted">데이터 로딩 실패</td></tr>';
+          rows.innerHTML = '<tr><td colspan="8" class="muted">데이터 로딩 실패</td></tr>';
         }
       });
   </script>
