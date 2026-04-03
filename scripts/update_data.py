@@ -171,10 +171,11 @@ def has_overseas_keyword(name):
     keywords = [
         "미국", "US", "USA", "U.S", "U S",
         "해외", "글로벌", "월드", "WORLD",
-        "S&P", "NASDAQ", "나스닥", "다우", "DOW",
+        "S&P", "S&P500", "NASDAQ", "나스닥", "다우", "다우존스", "DOW", "DOWJONES",
         "MSCI", "FTSE", "RUSSELL", "Russell",
         "유럽", "일본", "중국", "홍콩", "베트남", "인도", "브라질", "터키",
-        "인도네시아", "동남아", "아시아",
+        "인도네시아", "동남아", "아시아", "EM", "신흥", "선진", "신흥국",
+        "글로벌", "WORLD", "GLOBE", "글로벌",
     ]
     upper = str(name).upper()
     for kw in keywords:
