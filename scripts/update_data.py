@@ -19,6 +19,7 @@ ETF_PRICE_ENDPOINT = "/getETFPriceInfo"
 FIELD_CANDIDATES = {
     "ticker": ["srtnCd", "ticker", "code"],
     "name": ["itmsNm", "name", "itmsNm"],
+    "isin": ["isinCd", "isin", "isin_code"],
     "close": ["clpr", "close", "trdPrc", "tdd_clsprc"],
     "change": ["vs", "change", "fluc"],
     "change_pct": ["fltRt", "changeRate", "rate"],
@@ -113,6 +114,7 @@ def build_etf_price_url(service_key, ticker=None, bas_dt=None, like_name=None, p
 def build_etf_from_item(item):
     ticker = first_existing(item, FIELD_CANDIDATES["ticker"])
     name = first_existing(item, FIELD_CANDIDATES["name"])
+    isin = first_existing(item, FIELD_CANDIDATES["isin"])
     close = to_number(first_existing(item, FIELD_CANDIDATES["close"]))
     change = to_number(first_existing(item, FIELD_CANDIDATES["change"]))
     change_pct = to_number(first_existing(item, FIELD_CANDIDATES["change_pct"]))
@@ -121,6 +123,9 @@ def build_etf_from_item(item):
     date_value = first_existing(item, FIELD_CANDIDATES["date"])
 
     if not ticker:
+        return None
+    # Exclude non-Korean listings by ISIN prefix.
+    if isin and not str(isin).startswith("KR"):
         return None
 
     return {
