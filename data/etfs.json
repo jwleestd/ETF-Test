@@ -1,7 +1,7 @@
 {
   "as_of": "2026-04-03",
   "source_notes": {
-    "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt)",
+    "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
     "covered_call_ratio": "optional for high dividend ETF (e.g., dividend yield)",
     "expense_ratio": "placeholder"
@@ -35,74 +35,7 @@
         "date": null,
         "method": "not_available"
       },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:472150",
-      "ticker": "472150",
-      "name_ko": "TIGER 배당커버드콜액티브",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 16055,
-        "change": -735,
-        "change_pct": -4.38,
-        "volume": 4419859,
-        "market_cap": 899882750000,
-        "date": "20260402"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:498410",
-      "ticker": "498410",
-      "name_ko": "KODEX 금융고배당TOP10타겟위클리커버드콜",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 12625,
-        "change": -120,
-        "change_pct": -0.94,
-        "volume": 1909714,
-        "market_cap": 662812500000,
-        "date": "20260402"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
+      "tags": [],
       "links": {
         "issuer": null,
         "factsheet": null,
@@ -137,6 +70,7 @@
         "date": null,
         "method": "not_available"
       },
+      "tags": [],
       "links": {
         "issuer": null,
         "factsheet": null,
@@ -171,6 +105,77 @@
         "date": null,
         "method": "not_available"
       },
+      "tags": [],
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:315960",
+      "ticker": "315960",
+      "name_ko": "RISE 대형고배당10TR",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 53025,
+        "change": -2855,
+        "change_pct": -5.11,
+        "volume": 811983,
+        "market_cap": 434805000000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "tags": [],
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:484880",
+      "ticker": "484880",
+      "name_ko": "SOL 금융지주플러스고배당",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 20630,
+        "change": -470,
+        "change_pct": -2.23,
+        "volume": 511942,
+        "market_cap": 378560500000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "tags": [],
       "links": {
         "issuer": null,
         "factsheet": null,
