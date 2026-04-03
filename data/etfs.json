@@ -1,26 +1,162 @@
-﻿{
+{
   "as_of": "2026-04-03",
   "source_notes": {
-    "price": "placeholder (to be replaced by public API)",
+    "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt)",
     "distribution": "placeholder (to be replaced by public data or issuer)",
     "covered_call_ratio": "optional for high dividend ETF (e.g., dividend yield)",
     "expense_ratio": "placeholder"
   },
   "etfs": [
     {
-      "id": "KRX:000000",
-      "ticker": "000000",
-      "name_ko": "배당 ETF 샘플 (자동 갱신 예정)",
+      "id": "KRX:458730",
+      "ticker": "458730",
+      "name_ko": "TIGER 미국배당다우존스",
       "issuer": null,
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": null,
-        "change": null,
-        "change_pct": null,
-        "volume": null,
-        "market_cap": null,
-        "date": null
+        "close": 14630,
+        "change": -105,
+        "change_pct": -0.71,
+        "volume": 2385340,
+        "market_cap": 3166663500000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:161510",
+      "ticker": "161510",
+      "name_ko": "PLUS 고배당주",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 25050,
+        "change": -780,
+        "change_pct": -3.02,
+        "volume": 2309607,
+        "market_cap": 2508507000000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:441640",
+      "ticker": "441640",
+      "name_ko": "KODEX 미국배당커버드콜액티브",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 12745,
+        "change": -55,
+        "change_pct": -0.43,
+        "volume": 1026520,
+        "market_cap": 1452930000000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:466940",
+      "ticker": "466940",
+      "name_ko": "TIGER 은행고배당플러스TOP10",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 24430,
+        "change": -765,
+        "change_pct": -3.04,
+        "volume": 769193,
+        "market_cap": 955213000000,
+        "date": "20260402"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:446720",
+      "ticker": "446720",
+      "name_ko": "SOL 미국배당다우존스",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 13425,
+        "change": -55,
+        "change_pct": -0.41,
+        "volume": 712100,
+        "market_cap": 922297500000,
+        "date": "20260402"
       },
       "distribution": {
         "latest_amount": null,
