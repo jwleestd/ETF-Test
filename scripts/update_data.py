@@ -256,9 +256,11 @@ def main():
         if etf:
             etfs.append(etf)
 
-    # Optional: keep only covered call ETFs when FILTER_COVERED_CALL=1
+    # Optional filters for covered call
     if os.environ.get("FILTER_COVERED_CALL") == "1":
         etfs = [e for e in etfs if "covered_call" in (e.get("tags") or [])]
+    elif os.environ.get("EXCLUDE_COVERED_CALL") == "1":
+        etfs = [e for e in etfs if "covered_call" not in (e.get("tags") or [])]
 
     # Sort by market cap desc and take top 5
     etfs.sort(key=lambda e: (e.get("price", {}).get("market_cap") or 0), reverse=True)
@@ -267,7 +269,9 @@ def main():
     data["as_of"] = datetime.now().date().isoformat()
     note = "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt)"
     if os.environ.get("FILTER_COVERED_CALL") == "1":
-        note += " + covered_call filter"
+        note += " + covered_call_only"
+    if os.environ.get("EXCLUDE_COVERED_CALL") == "1":
+        note += " + covered_call_excluded"
     data.setdefault("source_notes", {})["price"] = note
 
     save_json(data_path, data)

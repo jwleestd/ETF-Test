@@ -31,6 +31,7 @@ jobs:
         env:
           DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
           KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
+          EXCLUDE_COVERED_CALL: "1"
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
