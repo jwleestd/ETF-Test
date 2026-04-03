@@ -32,6 +32,11 @@ jobs:
           DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
           KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Sync with remote before generating changes to avoid rebase on dirty tree.
+          git fetch origin main
+          git rebase origin/main
           if [ -f scripts/update_data.py ]; then
             python scripts/update_data.py
           else
@@ -41,10 +46,6 @@ jobs:
       - name: Commit and push changes (if any)
         run: |
           if [ -n "$(git status --porcelain)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
-            git fetch origin main
-            git rebase origin/main
             git add data/etfs.json public/data/etfs.json
             git commit -m "chore: update etf data"
             git push
