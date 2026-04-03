@@ -1,0 +1,72 @@
+﻿<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>한국 커버드콜 ETF</title>
+  <style>
+    :root {
+      --bg: #0f1a1c;
+      --card: #152326;
+      --text: #e9f0f1;
+      --muted: #b6c6c8;
+      --accent: #50d7c5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Noto Sans KR", "Pretendard", "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, #1b3034, transparent),
+                  radial-gradient(900px 600px at 90% 10%, #16353a, transparent),
+                  var(--bg);
+      color: var(--text);
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 48px 20px; }
+    .title { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+    .subtitle { color: var(--muted); margin-top: 8px; }
+    .card {
+      margin-top: 24px;
+      background: var(--card);
+      border: 1px solid #1f3438;
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #2a4a4f;
+      color: var(--text);
+      text-decoration: none;
+      background: #1c2f33;
+    }
+    .status { margin-top: 16px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="title">한국 커버드콜 ETF</div>
+    <div class="subtitle">GitHub Pages 배포 테스트용 첫 화면</div>
+
+    <div class="card">
+      <div>데이터 JSON 링크</div>
+      <a class="btn" href="./data/etfs.json" target="_blank" rel="noopener">etfs.json 열기</a>
+      <div class="status" id="status">데이터 로딩 테스트를 진행 중...</div>
+    </div>
+  </div>
+
+  <script>
+    fetch('./data/etfs.json')
+      .then(r => r.json())
+      .then(d => {
+        const count = Array.isArray(d.etfs) ? d.etfs.length : 0;
+        const asOf = d.as_of || 'unknown';
+        document.getElementById('status').textContent = `데이터 로딩 성공: ${count}개 (as_of: ${asOf})`;
+      })
+      .catch(() => {
+        document.getElementById('status').textContent = '데이터 로딩 실패: etfs.json 경로를 확인하세요.';
+      });
+  </script>
+</body>
+</html>
