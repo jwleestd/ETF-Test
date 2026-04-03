@@ -1,0 +1,51 @@
+﻿name: Update ETF Data
+
+on:
+  schedule:
+    # 14:00 KST = 05:00 UTC
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies (if any)
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          fi
+
+      - name: Run data update script (if present)
+        env:
+          DATA_GO_KR_API_KEY: ${{ secrets.DATA_GO_KR_API_KEY }}
+          KRX_API_KEY: ${{ secrets.KRX_API_KEY }}
+        run: |
+          if [ -f scripts/update_data.py ]; then
+            python scripts/update_data.py
+          else
+            echo "No scripts/update_data.py found. Skipping update."
+          fi
+
+      - name: Commit and push changes (if any)
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add public/data/etfs.json
+            git commit -m "chore: update etf data"
+            git push
+          else
+            echo "No changes to commit."
+          fi
