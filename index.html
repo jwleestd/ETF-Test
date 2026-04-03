@@ -42,6 +42,22 @@
       background: #1c2f33;
     }
     .status { margin-top: 16px; color: var(--muted); }
+    .section-title { font-size: 18px; font-weight: 600; margin: 0 0 12px; }
+    .table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid #1f3438; }
+    table { width: 100%; border-collapse: collapse; min-width: 720px; }
+    th, td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #1f3438; }
+    th { color: var(--muted); font-weight: 600; font-size: 13px; letter-spacing: 0.2px; }
+    td { font-size: 14px; }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #20383d;
+      border: 1px solid #2a4a4f;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .muted { color: var(--muted); }
   </style>
 </head>
 <body>
@@ -50,22 +66,97 @@
     <div class="subtitle">GitHub Pages 배포 테스트용 첫 화면</div>
 
     <div class="card">
-      <div>데이터 JSON 링크</div>
+      <div class="section-title">데이터 JSON 링크</div>
       <a class="btn" href="./data/etfs.json" target="_blank" rel="noopener">etfs.json 열기</a>
       <div class="status" id="status">데이터 로딩 테스트를 진행 중...</div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">ETF 목록 (가격 · 분배금 · 커버드콜 비중)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>종목</th>
+              <th>티커</th>
+              <th>가격</th>
+              <th>분배금</th>
+              <th>커버드콜 비중</th>
+              <th>기준일</th>
+            </tr>
+          </thead>
+          <tbody id="etf-rows">
+            <tr><td colspan="6" class="muted">데이터 로딩 중...</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 
   <script>
+    const fmtNumber = (v) => {
+      if (v === null || v === undefined || v === '') return '-';
+      const n = Number(v);
+      if (Number.isNaN(n)) return String(v);
+      return n.toLocaleString('ko-KR');
+    };
+
+    const fmtPercent = (v) => {
+      if (v === null || v === undefined || v === '') return '-';
+      const n = Number(v);
+      if (Number.isNaN(n)) return String(v);
+      return `${n.toFixed(2)}%`;
+    };
+
+    const fmtDate = (v) => {
+      if (!v) return '-';
+      if (/^\d{8}$/.test(v)) {
+        return `${v.slice(0,4)}-${v.slice(4,6)}-${v.slice(6,8)}`;
+      }
+      return v;
+    };
+
     fetch('./data/etfs.json')
       .then(r => r.json())
       .then(d => {
         const count = Array.isArray(d.etfs) ? d.etfs.length : 0;
         const asOf = d.as_of || 'unknown';
         document.getElementById('status').textContent = `데이터 로딩 성공: ${count}개 (as_of: ${asOf})`;
+
+        const rows = document.getElementById('etf-rows');
+        if (!Array.isArray(d.etfs) || d.etfs.length === 0) {
+          rows.innerHTML = '<tr><td colspan="6" class="muted">데이터가 없습니다.</td></tr>';
+          return;
+        }
+
+        rows.innerHTML = d.etfs.map(etf => {
+          const price = etf.price || {};
+          const dist = etf.distribution || {};
+          const cc = etf.covered_call_ratio || {};
+
+          const priceText = price.close != null ? `${fmtNumber(price.close)}원` : '-';
+          const distText = dist.latest_amount != null ? `${fmtNumber(dist.latest_amount)}원` : '-';
+          const ccText = cc.value != null ? fmtPercent(cc.value) : '-';
+          const basisDate = fmtDate(price.date || dist.latest_record_date || cc.date || d.as_of);
+
+          return `
+            <tr>
+              <td>${etf.name_ko || '-'}</td>
+              <td><span class="pill">${etf.ticker || '-'}</span></td>
+              <td>${priceText}</td>
+              <td>${distText}</td>
+              <td>${ccText}</td>
+              <td>${basisDate}</td>
+            </tr>
+          `;
+        }).join('');
       })
       .catch(() => {
         document.getElementById('status').textContent = '데이터 로딩 실패: etfs.json 경로를 확인하세요.';
+        const rows = document.getElementById('etf-rows');
+        if (rows) {
+          rows.innerHTML = '<tr><td colspan="6" class="muted">데이터 로딩 실패</td></tr>';
+        }
       });
   </script>
 </body>
