@@ -28,7 +28,8 @@ FIELD_CANDIDATES = {
 
 
 def load_json(path):
-    with open(path, "r", encoding="utf-8") as f:
+    # Handle UTF-8 BOM that can appear in Windows-saved JSON files.
+    with open(path, "r", encoding="utf-8-sig") as f:
         return json.load(f)
 
 
