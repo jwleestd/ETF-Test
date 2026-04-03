@@ -233,6 +233,9 @@
           });
         }
 
+        // Ensure detail is hidden by default on first load.
+        detailCard.style.display = 'none';
+
         bindRows();
       })
       .catch(() => {
