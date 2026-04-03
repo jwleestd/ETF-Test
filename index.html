@@ -176,10 +176,9 @@
           const marketCap = price.market_cap != null ? `${fmtNumber(price.market_cap)}원` : '-';
           const basisDate = fmtDate(price.date || dist.latest_record_date || cc.date || d.as_of);
 
-          const detailUrl = `./detail.html?ticker=${encodeURIComponent(etf.ticker || '')}`;
           return `
             <tr data-idx="${idx}">
-              <td><a href="${detailUrl}" style="color:inherit; text-decoration:underline;">${etf.name_ko || '-'}</a></td>
+              <td>${etf.name_ko || '-'}</td>
               <td><span class="pill">${etf.ticker || '-'}</span></td>
               <td>${priceText}</td>
               <td>${distText}</td>
