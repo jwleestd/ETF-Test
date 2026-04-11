@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-10",
+  "as_of": "2026-04-11",
   "source_notes": {
     "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
