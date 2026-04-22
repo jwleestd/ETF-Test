@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-04-21",
+  "as_of": "2026-04-22",
   "source_notes": {
     "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
@@ -15,12 +15,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 27040,
-        "change": 160,
-        "change_pct": 0.6,
-        "volume": 429920,
-        "market_cap": 1024816000000,
-        "date": "20260420"
+        "close": 26940,
+        "change": -100,
+        "change_pct": -0.37,
+        "volume": 613110,
+        "market_cap": 1019679000000,
+        "date": "20260421"
       },
       "distribution": {
         "latest_amount": null,
@@ -50,12 +50,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 29775,
-        "change": 130,
-        "change_pct": 0.44,
-        "volume": 454938,
-        "market_cap": 802734000000,
-        "date": "20260420"
+        "close": 30200,
+        "change": 425,
+        "change_pct": 1.43,
+        "volume": 464331,
+        "market_cap": 818420000000,
+        "date": "20260421"
       },
       "distribution": {
         "latest_amount": null,
@@ -85,12 +85,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 13870,
-        "change": -20,
-        "change_pct": -0.14,
-        "volume": 738626,
-        "market_cap": 678936500000,
-        "date": "20260420"
+        "close": 13855,
+        "change": -15,
+        "change_pct": -0.11,
+        "volume": 615112,
+        "market_cap": 674045750000,
+        "date": "20260421"
       },
       "distribution": {
         "latest_amount": null,
@@ -120,12 +120,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 65335,
-        "change": 275,
-        "change_pct": 0.42,
-        "volume": 129785,
-        "market_cap": 525946750000,
-        "date": "20260420"
+        "close": 67285,
+        "change": 1950,
+        "change_pct": 2.98,
+        "volume": 219236,
+        "market_cap": 534915750000,
+        "date": "20260421"
       },
       "distribution": {
         "latest_amount": null,
@@ -148,19 +148,19 @@
       }
     },
     {
-      "id": "KRX:484880",
-      "ticker": "484880",
-      "name_ko": "SOL 금융지주플러스고배당",
+      "id": "KRX:279530",
+      "ticker": "279530",
+      "name_ko": "KODEX 고배당주",
       "issuer": null,
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 22935,
-        "change": -55,
-        "change_pct": -0.24,
-        "volume": 302300,
-        "market_cap": 420857250000,
-        "date": "20260420"
+        "close": 18475,
+        "change": -60,
+        "change_pct": -0.32,
+        "volume": 424124,
+        "market_cap": 419382500000,
+        "date": "20260421"
       },
       "distribution": {
         "latest_amount": null,
