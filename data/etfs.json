@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-24",
+  "as_of": "2026-06-25",
   "source_notes": {
     "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
@@ -15,12 +15,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 34710,
-        "change": -2705,
-        "change_pct": -7.23,
-        "volume": 1203301,
-        "market_cap": 941335200000,
-        "date": "20260623"
+        "close": 35080,
+        "change": 370,
+        "change_pct": 1.07,
+        "volume": 922688,
+        "market_cap": 943652000000,
+        "date": "20260624"
       },
       "distribution": {
         "latest_amount": null,
@@ -50,12 +50,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 24500,
-        "change": -630,
-        "change_pct": -2.51,
-        "volume": 1541753,
-        "market_cap": 742350000000,
-        "date": "20260623"
+        "close": 24390,
+        "change": -110,
+        "change_pct": -0.45,
+        "volume": 2393360,
+        "market_cap": 740236500000,
+        "date": "20260624"
       },
       "distribution": {
         "latest_amount": null,
@@ -85,12 +85,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 94750,
-        "change": -9770,
-        "change_pct": -9.35,
-        "volume": 482438,
-        "market_cap": 658512500000,
-        "date": "20260623"
+        "close": 97085,
+        "change": 2335,
+        "change_pct": 2.46,
+        "volume": 711523,
+        "market_cap": 674740750000,
+        "date": "20260624"
       },
       "distribution": {
         "latest_amount": null,
@@ -120,12 +120,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 12650,
-        "change": -585,
-        "change_pct": -4.42,
-        "volume": 1530233,
-        "market_cap": 524342500000,
-        "date": "20260623"
+        "close": 12645,
+        "change": -5,
+        "change_pct": -0.04,
+        "volume": 933359,
+        "market_cap": 525399750000,
+        "date": "20260624"
       },
       "distribution": {
         "latest_amount": null,
@@ -155,12 +155,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 16550,
-        "change": -335,
-        "change_pct": -1.98,
-        "volume": 1107599,
-        "market_cap": 321070000000,
-        "date": "20260623"
+        "close": 16355,
+        "change": -195,
+        "change_pct": -1.18,
+        "volume": 1132062,
+        "market_cap": 317287000000,
+        "date": "20260624"
       },
       "distribution": {
         "latest_amount": null,
