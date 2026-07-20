@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-19",
+  "as_of": "2026-07-20",
   "source_notes": {
     "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
@@ -15,12 +15,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 31290,
-        "change": 1710,
-        "change_pct": 5.78,
-        "volume": 533374,
-        "market_cap": 842952600000,
-        "date": "20260715"
+        "close": 30205,
+        "change": -1085,
+        "change_pct": -3.47,
+        "volume": 465958,
+        "market_cap": 817951400000,
+        "date": "20260716"
       },
       "distribution": {
         "latest_amount": null,
@@ -50,47 +50,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 27070,
-        "change": 255,
-        "change_pct": 0.95,
-        "volume": 897595,
-        "market_cap": 810746500000,
-        "date": "20260715"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "tags": [],
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:315960",
-      "ticker": "315960",
-      "name_ko": "RISE 대형고배당10TR",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 85620,
-        "change": 4430,
-        "change_pct": 5.46,
-        "volume": 199309,
-        "market_cap": 569373000000,
-        "date": "20260715"
+        "close": 27200,
+        "change": 130,
+        "change_pct": 0.48,
+        "volume": 1421336,
+        "market_cap": 816000000000,
+        "date": "20260716"
       },
       "distribution": {
         "latest_amount": null,
@@ -120,12 +85,47 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 13050,
-        "change": 200,
-        "change_pct": 1.56,
-        "volume": 603417,
-        "market_cap": 542227500000,
-        "date": "20260715"
+        "close": 13090,
+        "change": 40,
+        "change_pct": 0.31,
+        "volume": 1164829,
+        "market_cap": 543889500000,
+        "date": "20260716"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "tags": [],
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:315960",
+      "ticker": "315960",
+      "name_ko": "RISE 대형고배당10TR",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 80575,
+        "change": -5045,
+        "change_pct": -5.89,
+        "volume": 305848,
+        "market_cap": 539852500000,
+        "date": "20260716"
       },
       "distribution": {
         "latest_amount": null,
@@ -155,12 +155,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 23305,
-        "change": 415,
-        "change_pct": 1.81,
-        "volume": 1023222,
-        "market_cap": 349575000000,
-        "date": "20260715"
+        "close": 23350,
+        "change": 45,
+        "change_pct": 0.19,
+        "volume": 1203862,
+        "market_cap": 351417500000,
+        "date": "20260716"
       },
       "distribution": {
         "latest_amount": null,
