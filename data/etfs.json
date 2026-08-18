@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-08-16",
+  "as_of": "2026-08-18",
   "source_notes": {
     "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
@@ -8,19 +8,19 @@
   },
   "etfs": [
     {
-      "id": "KRX:466940",
-      "ticker": "466940",
-      "name_ko": "TIGER 은행고배당플러스TOP10",
+      "id": "KRX:441800",
+      "ticker": "441800",
+      "name_ko": "TIME Korea플러스배당액티브",
       "issuer": null,
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 26190,
-        "change": 290,
-        "change_pct": 1.12,
-        "volume": 574400,
-        "market_cap": 783081000000,
-        "date": "20260813"
+        "close": 29095,
+        "change": 960,
+        "change_pct": 3.41,
+        "volume": 179940,
+        "market_cap": 804185800000,
+        "date": "20260814"
       },
       "distribution": {
         "latest_amount": null,
@@ -43,19 +43,19 @@
       }
     },
     {
-      "id": "KRX:441800",
-      "ticker": "441800",
-      "name_ko": "TIME Korea플러스배당액티브",
+      "id": "KRX:466940",
+      "ticker": "466940",
+      "name_ko": "TIGER 은행고배당플러스TOP10",
       "issuer": null,
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 28135,
-        "change": 465,
-        "change_pct": 1.68,
-        "volume": 206119,
-        "market_cap": 776526000000,
-        "date": "20260813"
+        "close": 26365,
+        "change": 175,
+        "change_pct": 0.67,
+        "volume": 323061,
+        "market_cap": 788313500000,
+        "date": "20260814"
       },
       "distribution": {
         "latest_amount": null,
@@ -85,12 +85,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 13005,
-        "change": 5,
-        "change_pct": 0.04,
-        "volume": 296328,
-        "market_cap": 539707500000,
-        "date": "20260813"
+        "close": 13235,
+        "change": 230,
+        "change_pct": 1.77,
+        "volume": 446458,
+        "market_cap": 549252500000,
+        "date": "20260814"
       },
       "distribution": {
         "latest_amount": null,
@@ -120,12 +120,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 76520,
-        "change": 2335,
-        "change_pct": 3.15,
-        "volume": 57088,
-        "market_cap": 505032000000,
-        "date": "20260813"
+        "close": 78865,
+        "change": 2345,
+        "change_pct": 3.06,
+        "volume": 60787,
+        "market_cap": 520509000000,
+        "date": "20260814"
       },
       "distribution": {
         "latest_amount": null,
@@ -155,12 +155,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 22265,
-        "change": 120,
-        "change_pct": 0.54,
-        "volume": 334885,
-        "market_cap": 371825500000,
-        "date": "20260813"
+        "close": 22510,
+        "change": 245,
+        "change_pct": 1.1,
+        "volume": 377526,
+        "market_cap": 375917000000,
+        "date": "20260814"
       },
       "distribution": {
         "latest_amount": null,
