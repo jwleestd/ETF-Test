@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-10",
+  "as_of": "2026-11-11",
   "source_notes": {
     "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
@@ -15,12 +15,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 22920,
-        "change": -330,
-        "change_pct": -1.42,
-        "volume": 508750,
-        "market_cap": 917946000000,
-        "date": "20261109"
+        "close": 23105,
+        "change": 185,
+        "change_pct": 0.81,
+        "volume": 264407,
+        "market_cap": 924200000000,
+        "date": "20261110"
       },
       "distribution": {
         "latest_amount": null,
@@ -50,12 +50,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 22235,
-        "change": -345,
-        "change_pct": -1.53,
-        "volume": 136394,
-        "market_cap": 624803500000,
-        "date": "20261109"
+        "close": 22670,
+        "change": 435,
+        "change_pct": 1.96,
+        "volume": 137567,
+        "market_cap": 637480400000,
+        "date": "20261110"
       },
       "distribution": {
         "latest_amount": null,
@@ -85,47 +85,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 11460,
-        "change": -265,
-        "change_pct": -2.26,
-        "volume": 395495,
-        "market_cap": 493926000000,
-        "date": "20261109"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "tags": [],
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:279530",
-      "ticker": "279530",
-      "name_ko": "KODEX 고배당주",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 15855,
-        "change": -305,
-        "change_pct": -1.89,
-        "volume": 164366,
-        "market_cap": 382105500000,
-        "date": "20261109"
+        "close": 11515,
+        "change": 55,
+        "change_pct": 0.48,
+        "volume": 286552,
+        "market_cap": 496296500000,
+        "date": "20261110"
       },
       "distribution": {
         "latest_amount": null,
@@ -155,12 +120,47 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 57770,
-        "change": -230,
-        "change_pct": -0.4,
-        "volume": 35396,
-        "market_cap": 372616500000,
-        "date": "20261109"
+        "close": 59800,
+        "change": 2030,
+        "change_pct": 3.51,
+        "volume": 27801,
+        "market_cap": 388700000000,
+        "date": "20261110"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "tags": [],
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:279530",
+      "ticker": "279530",
+      "name_ko": "KODEX 고배당주",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 16015,
+        "change": 160,
+        "change_pct": 1.01,
+        "volume": 113199,
+        "market_cap": 385961500000,
+        "date": "20261110"
       },
       "distribution": {
         "latest_amount": null,
