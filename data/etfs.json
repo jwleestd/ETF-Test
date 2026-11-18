@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-11-17",
+  "as_of": "2026-11-18",
   "source_notes": {
     "price": "data.go.kr 증권상품시세정보 getETFPriceInfo (likeItmsNm=배당, top5 by mrktTotAmt) + covered_call_excluded",
     "distribution": "placeholder (to be replaced by public data or issuer)",
@@ -15,12 +15,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 23995,
-        "change": 230,
-        "change_pct": 0.97,
-        "volume": 277123,
-        "market_cap": 957400500000,
-        "date": "20261116"
+        "close": 23685,
+        "change": -310,
+        "change_pct": -1.29,
+        "volume": 334599,
+        "market_cap": 946215750000,
+        "date": "20261117"
       },
       "distribution": {
         "latest_amount": null,
@@ -50,12 +50,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 22670,
-        "change": -305,
-        "change_pct": -1.33,
-        "volume": 118556,
-        "market_cap": 637480400000,
-        "date": "20261116"
+        "close": 22250,
+        "change": -420,
+        "change_pct": -1.85,
+        "volume": 91668,
+        "market_cap": 626560000000,
+        "date": "20261117"
       },
       "distribution": {
         "latest_amount": null,
@@ -85,47 +85,12 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 11260,
-        "change": 25,
-        "change_pct": 0.22,
-        "volume": 254261,
-        "market_cap": 489247000000,
-        "date": "20261116"
-      },
-      "distribution": {
-        "latest_amount": null,
-        "latest_record_date": null,
-        "latest_pay_date": null,
-        "frequency": null,
-        "currency": "KRW"
-      },
-      "covered_call_ratio": {
-        "value": null,
-        "unit": "percent",
-        "date": null,
-        "method": "not_available"
-      },
-      "tags": [],
-      "links": {
-        "issuer": null,
-        "factsheet": null,
-        "disclosure": null
-      }
-    },
-    {
-      "id": "KRX:315960",
-      "ticker": "315960",
-      "name_ko": "RISE 대형고배당10TR",
-      "issuer": null,
-      "listed_date": null,
-      "expense_ratio": null,
-      "price": {
-        "close": 59400,
-        "change": -1850,
-        "change_pct": -3.02,
-        "volume": 66978,
-        "market_cap": 386100000000,
-        "date": "20261116"
+        "close": 11065,
+        "change": -195,
+        "change_pct": -1.73,
+        "volume": 282238,
+        "market_cap": 481880750000,
+        "date": "20261117"
       },
       "distribution": {
         "latest_amount": null,
@@ -155,12 +120,47 @@
       "listed_date": null,
       "expense_ratio": null,
       "price": {
-        "close": 15960,
-        "change": 15,
-        "change_pct": 0.09,
-        "volume": 80204,
-        "market_cap": 384636000000,
-        "date": "20261116"
+        "close": 15745,
+        "change": -215,
+        "change_pct": -1.35,
+        "volume": 101893,
+        "market_cap": 379454500000,
+        "date": "20261117"
+      },
+      "distribution": {
+        "latest_amount": null,
+        "latest_record_date": null,
+        "latest_pay_date": null,
+        "frequency": null,
+        "currency": "KRW"
+      },
+      "covered_call_ratio": {
+        "value": null,
+        "unit": "percent",
+        "date": null,
+        "method": "not_available"
+      },
+      "tags": [],
+      "links": {
+        "issuer": null,
+        "factsheet": null,
+        "disclosure": null
+      }
+    },
+    {
+      "id": "KRX:315960",
+      "ticker": "315960",
+      "name_ko": "RISE 대형고배당10TR",
+      "issuer": null,
+      "listed_date": null,
+      "expense_ratio": null,
+      "price": {
+        "close": 57915,
+        "change": -1485,
+        "change_pct": -2.5,
+        "volume": 34627,
+        "market_cap": 376447500000,
+        "date": "20261117"
       },
       "distribution": {
         "latest_amount": null,
